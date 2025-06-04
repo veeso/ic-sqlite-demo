@@ -1,13 +1,13 @@
 use std::path::Path;
 
 pub enum Canister {
-    HelloWorld,
+    SqliteDb,
 }
 
 impl Canister {
     pub fn as_path(&self) -> &'static Path {
         match self {
-            Canister::HelloWorld => Path::new("../.artifact/hello_world.wasm.gz"),
+            Canister::SqliteDb => Path::new("../.artifact/sqlite_db.wasm.gz"),
         }
     }
 }

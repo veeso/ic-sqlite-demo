@@ -7,11 +7,11 @@ clean:
 
 # Builds all canisters
 [group('build')]
-build_all_canisters: build_hello_world
+build_all_canisters: build_sqlite_db
 
 [group('build')]
-build_hello_world: pre_build
-  just build_canister "hello_world" "hello_world"
+build_sqlite_db: pre_build
+  just build_canister "sqlite_db" "sqlite_db"
 
 [private]
 pre_build: 

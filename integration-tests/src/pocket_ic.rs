@@ -15,12 +15,12 @@ const DEFAULT_CYCLES: u128 = 2_000_000_000_000_000;
 /// Test environment
 pub struct PocketIcTestEnv {
     pub pic: PocketIc,
-    pub hello_world: Principal,
+    pub sqlite_db: Principal,
 }
 
 impl TestEnv for PocketIcTestEnv {
-    fn hello_world(&self) -> Principal {
-        self.hello_world
+    fn sqlite_db(&self) -> Principal {
+        self.sqlite_db
     }
 
     async fn query<R>(
@@ -88,12 +88,12 @@ impl PocketIcTestEnv {
             .await;
 
         // create canisters
-        let hello_world = pic.create_canister().await;
-        println!("Hello World: {hello_world}",);
+        let sqlite_db = pic.create_canister().await;
+        println!("Sqlite DB: {sqlite_db}",);
 
-        Self::install_hello_world(&pic, hello_world).await;
+        Self::install_sqlite_db(&pic, sqlite_db).await;
 
-        Self { hello_world, pic }
+        Self { sqlite_db, pic }
     }
 
     pub async fn stop(self) {
@@ -105,10 +105,10 @@ impl PocketIcTestEnv {
     }
 
     /// Install [`Canister::HelloWorld`] canister
-    async fn install_hello_world(pic: &PocketIc, canister_id: Principal) {
+    async fn install_sqlite_db(pic: &PocketIc, canister_id: Principal) {
         pic.add_cycles(canister_id, DEFAULT_CYCLES).await;
 
-        let wasm_bytes = Self::load_wasm(Canister::HelloWorld);
+        let wasm_bytes = Self::load_wasm(Canister::SqliteDb);
 
         //let init_arg = todo!();
         let init_arg = vec![]; // Encode!(&init_arg).unwrap();

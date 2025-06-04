@@ -1,5 +1,5 @@
 [workspace]
-members = ["src/hello_world", "src/did", "src/pocket-test", "integration-tests"]
+members = ["src/sqlite_db", "src/did", "src/pocket-test", "integration-tests"]
 resolver = "2"
 
 [workspace.package]
@@ -13,7 +13,12 @@ repository = "https://github.com/veeso/ic-canister-template"
 candid = { version = "0.10", features = ["value"] }
 ic-cdk = "0.18.2-alpha.1"
 ic-cdk-macros = "0.18"
+ic-sqlite = { git = "https://github.com/veeso/ic-sqlite.git", version = "0.1" }
 ic-stable-structures = "0.6.8"
+rusqlite = { package = "rusqlite-ic", version = "0.28", features = [
+  "bundled",
+  "serde_json",
+] }
 serde = "1"
 
 # integration-tests
